@@ -10,13 +10,13 @@
 ```
 
 **2. set 메서드 정리**
-    - add : 속성 추가 함수
-    - clear : 변수 초기화
-    - delete : 해당 변수 삭제
-    - difference : 두 set의 차집합 
+    -add : 속성 추가 함수
+    -clear : 변수 초기화
+    -delete : 해당 변수 삭제
+    -difference : 두 set의 차집합 
 ```javascript
             const odds = new Set([1, 3, 5, 7, 9]);
             const squares = new Set([1, 4, 9]);
             console.log(odds.difference(squares)); // Set(3) { 3, 5, 7 }
 ```
-    - forEach : set을 순회할 수 있음
+    -forEach : set을 순회할 수 있음
