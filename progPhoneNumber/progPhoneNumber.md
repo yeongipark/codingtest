@@ -45,6 +45,7 @@
                 return true
             }
         }
+        />
 ```
 
 ## 3번 풀이
@@ -52,7 +53,7 @@
     - 주어진 문자열 배열을 sort로 사전순 정렬한다.
     - 정렬하고 앞에 value랑 뒤에 value랑 비교해서 뒤에 문자열에 앞의 문자열이 포함되는지만 확인하면 끝... 레전드
 
-    Array.some()함수 정리 -> 콜백으로 주어진 함수에서 하나라도 true를 반환하면 결과값이 true가 된다.
+**Array.some()** 함수 정리 -> 콜백으로 주어진 함수에서 하나라도 true를 반환하면 결과값이 true가 된다.
 
 ```javascript
 function isBiggerThan10(element, index, array) {
