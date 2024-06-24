@@ -5,10 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "chrome",
+      "type": "node",
       "request": "launch",
-      "name": "localhost에 대해 Chrome 시작",
-      "file": "${workspaceFolder}"
+      "name": "프로그램 시작",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}\\back2023\\back2023.js"
     }
   ]
 }
