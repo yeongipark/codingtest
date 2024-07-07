@@ -1,16 +1,9 @@
-function permutation(result, rests, ouput) {
-  if (rests.length === 0) {
-    ouput.push(result);
-    return;
-  }
+let arr = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
 
-  rests.forEach((value, index) => {
-    let rest = [...rests.slice(0, index), ...rests.slice(index + 1)];
-    permutation([...result, value], rest, ouput);
-  });
-}
-
-let output = [];
-
-permutation([], ["a", "b", "c"], output);
-console.log(output);
+// let copy = arr.map((item) => [...item]);
+let copy = Array.from(arr, (row) => [...row]);
+console.log(copy);
