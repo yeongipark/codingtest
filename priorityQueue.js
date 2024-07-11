@@ -62,20 +62,3 @@ class PriorityQueue {
     return returnNum;
   }
 }
-
-let prq = new PriorityQueue();
-
-prq.add(1);
-prq.add(3);
-prq.add(10);
-prq.add(9);
-prq.add(3);
-prq.add(2);
-
-console.log(prq);
-
-console.log(prq.remove());
-console.log(prq.remove());
-console.log(prq.remove());
-prq.add(1);
-console.log(prq);
