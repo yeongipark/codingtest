@@ -5,26 +5,27 @@ class PriorityQueue {
 
   add(n) {
     this.heap.push(n);
+
     if (this.heap.length === 1) {
       return;
     }
-    let cur = this.heap.length - 1;
-    let parent;
 
+    let cur = this.heap.length - 1;
+    let parent = Math.floor((cur - 1) / 2);
     while (cur > 0) {
-      parent = Math.floor(cur - 1 / 2);
       if (this.heap[parent] > this.heap[cur]) {
         [this.heap[parent], this.heap[cur]] = [
           this.heap[cur],
           this.heap[parent],
         ];
         cur = parent;
+        parent = (cur - 1) / 2;
       } else break;
     }
   }
 
   getSize() {
-    return this.heap.length - 1;
+    return this.heap.length;
   }
 
   isEmpty() {
@@ -40,42 +41,39 @@ class PriorityQueue {
       return this.heap.shift();
     }
 
-    let returnNum = this.heap[0];
+    let min = this.heap[0];
     this.heap[0] = this.heap.pop();
     let cur = 0;
     let left = cur * 2 + 1;
     let right = cur * 2 + 2;
-
     while (left < this.heap.length) {
       let child = left;
-      if (right < this.heap.length && this.heap[right] < this.heap[child]) {
+      if (right < this.heap.length && this.heap[right] < this.heap[left]) {
         child = right;
       }
-      if (this.heap[cur] > this.heap[child]) {
-        [this.heap[cur], this.heap[child]] = [this.heap[child], this.heap[cur]];
+
+      if (this.heap[child] < this.heap[cur]) {
+        [this.heap[child], this.heap[cur]] = [this.heap[cur], this.heap[child]];
         cur = child;
         left = cur * 2 + 1;
         right = cur * 2 + 2;
-      } else break;
+      } else {
+        break;
+      }
     }
 
-    return returnNum;
+    return min;
   }
 }
 
-let prq = new PriorityQueue();
+let pr = new PriorityQueue();
+pr.add(1);
+pr.add(2);
+pr.add(3);
+pr.add(4);
+pr.add(5);
 
-prq.add(1);
-prq.add(3);
-prq.add(10);
-prq.add(9);
-prq.add(3);
-prq.add(2);
+console.log(pr.remove());
+console.log(pr.remove());
 
-console.log(prq);
-
-console.log(prq.remove());
-console.log(prq.remove());
-console.log(prq.remove());
-prq.add(1);
-console.log(prq);
+console.log(pr);
