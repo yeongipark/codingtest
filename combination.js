@@ -26,9 +26,3 @@ function permutation({ list, result, items }) {
     permutation({ list: rest, result, items: [...items, list[i]] });
   }
 }
-
-const arr = ["a", "b", "c"];
-const result = [];
-// combination({ list: arr, result, size: 3, items: [], index: 0 });
-permutation({ list: arr, result, items: [] });
-console.log(result);
