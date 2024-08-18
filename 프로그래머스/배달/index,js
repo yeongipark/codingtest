@@ -1,0 +1,98 @@
+function solution(N, road, K) {
+    var answer = 0;
+    let minHeap = new MinHeap();
+    let list = Array.from({length : N + 1},()=>[])
+    let D = Array(N+1).fill(Infinity);
+    D[1] = 0
+    minHeap.add([1,0])
+    
+    // 인접 리스트로 초기화
+    for(let [start,end,value] of road){
+        list[start].push([end,value]);
+        list[end].push([start,value])
+    }
+    
+    while(!minHeap.isEmpty()){
+        let[currentNode,currentValue] = minHeap.remove();
+        // 이미 방문한 노드
+        if(D[currentNode] < currentValue) continue;
+        
+        for(let [nextNode,weight] of list[currentNode]){
+            let distance = currentValue + weight;
+            if(distance < D[nextNode]){
+                D[nextNode] = distance;
+                minHeap.add([nextNode,distance])
+            }
+        }
+        
+    }
+    return D.reduce((acc,cur)=>{
+        if(cur <= K){
+            return acc + 1;
+        }else{
+            return acc
+        }
+    },0)
+   
+}
+
+class MinHeap{
+    constructor(){
+        this.heap = []
+    }
+    
+    isEmpty(){
+        return this.heap.length === 0;
+    }
+    
+    size(){
+        return this.heap.length;
+    }
+    
+    add(node){
+        if(this.isEmpty()){
+            this.heap.push(node);
+        }else{
+            this.heap.push(node);
+            let cur = this.size() - 1;
+            let parent = Math.ceil(cur / 2) - 1;
+            while(this.heap[parent]){
+                if(this.heap[cur][1] < this.heap[parent][1]){
+                    [this.heap[cur],this.heap[parent]] = [this.heap[parent],this.heap[cur]]
+                    cur = parent;
+                    parent = Math.ceil(cur /2) - 1; 
+                }else break
+            }
+        }
+    }
+    
+    remove(){
+        if(this.isEmpty()){
+            return null
+        }
+        
+        if(this.size() === 1){
+            return this.heap.pop();
+        }
+        
+        let returnValue = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        let cur = 0;
+        let left = cur * 2 + 1;
+        let right = cur * 2 + 2;
+        while(left < this.size()){
+            let child = left;
+            if(right < this.size() && this.heap[left][1] > this.heap[right][1]){
+                child = right;
+            }
+            
+            if(this.heap[cur][1] > this.heap[child][1]){
+                [this.heap[cur],this.heap[child]] = [this.heap[child],this.heap[cur]]
+                cur = child;
+                left = cur * 2 + 1;
+                right = cur * 2 + 2;
+            }else break;
+        }
+        return returnValue
+    }
+}
