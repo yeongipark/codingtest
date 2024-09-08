@@ -21,4 +21,4 @@ function solution(num) {
   return true;
 }
 
-console.log(solution(79));
+console.log(solution(49));
