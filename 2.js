@@ -1,24 +1,5 @@
-function splitSquareSum(num) {
-  let string = num + "";
-  let sum = 0;
-  for (let char of string) {
-    let number = +char;
-    sum += number ** 2;
-  }
-  return sum;
-}
+const union = (arr1, arr2) => {
+  return [...new Set([...arr1, ...arr2])].sort((a, b) => a - b);
+};
 
-function solution(num) {
-  let result = num;
-  let count = 0;
-  while (result !== 1) {
-    result = splitSquareSum(result);
-    count++;
-    if (count >= 1000 || result === num) {
-      return false;
-    }
-  }
-  return true;
-}
-
-console.log(solution(49));
+console.log(union([5, 6, 1, 3], [1, 8, 9, 5]));
